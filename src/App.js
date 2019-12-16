@@ -22,13 +22,17 @@ class App extends Component {
     console.log(this.state);
     event.preventDefault();
     Axios.get(
-      "https://api.ziprecruiter.com/jobs/v1?search=Perl%20Job&location=Santa%20Monica,%20CA&radius_miles=25&days_ago=&jobs_per_page=10&page=1&api_key=mthpyw9ea7zyswfuj3zur6bt55fce7qf"
+      `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=25&days_ago=&jobs_per_page=10&page=1&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(res => {
       let jobs = [];
 
       res.data.jobs.map((job, index) => {
         console.log(job.name, index);
-        jobs.push(<p key={index}>{job.name}</p>);
+        jobs.push(
+          <p key={index}>
+            {job.name} at {job.location}
+          </p>
+        );
       });
 
       this.setState({ results: jobs });
@@ -41,6 +45,17 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <a href="https://www.ziprecruiter.com/jobs" id="jobs_widget_link">
+            <span>Job Search by</span>{" "}
+            <span id="zr_logo_container">
+              <img
+                id="zr_logo"
+                src="https://www.ziprecruiter.com/img/logos/logo-sm-black-304px.png"
+                alt="ZipRecruiter"
+                width="120"
+              />
+            </span>
+          </a>
           <h2>Jobget's Assignment</h2>
         </div>
         <div>
