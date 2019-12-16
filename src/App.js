@@ -8,7 +8,7 @@ import Axios from "axios";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { results: [] };
+    this.state = { results: [], numOfJobs: 10 };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +21,9 @@ class App extends Component {
   handleSubmit(event) {
     console.log(this.state);
     event.preventDefault();
+    // this.setState({numOfJobs: })
     Axios.get(
-      `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=25&days_ago=&jobs_per_page=10&page=1&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=25&days_ago=&jobs_per_page=${this.state.numOfJobs}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(res => {
       let jobs = [];
 
@@ -36,7 +37,7 @@ class App extends Component {
       });
 
       this.setState({ results: jobs });
-      console.log("state results", this.state.results);
+      console.log("state", this.state);
     });
   }
 
@@ -78,6 +79,22 @@ class App extends Component {
                 />
               </Col>
             </Form.Row>
+            <Col>
+              <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Label>Results per page</Form.Label>
+                <Form.Control
+                  name="numOfJobs"
+                  as="select"
+                  onChange={this.handleChange}
+                >
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </Form.Control>
+              </Form.Group>
+            </Col>
             <Button type="submit">Submit</Button>
           </Form>
           <article>{this.state.results}</article>
