@@ -3,10 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Form, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { results: [] };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,9 +19,21 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state);
     console.log(this.state);
     event.preventDefault();
+    Axios.get(
+      "https://api.ziprecruiter.com/jobs/v1?search=Perl%20Job&location=Santa%20Monica,%20CA&radius_miles=25&days_ago=&jobs_per_page=10&page=1&api_key=mthpyw9ea7zyswfuj3zur6bt55fce7qf"
+    ).then(res => {
+      let jobs = [];
+
+      res.data.jobs.map((job, index) => {
+        console.log(job.name, index);
+        jobs.push(<p key={index}>{job.name}</p>);
+      });
+
+      this.setState({ results: jobs });
+      console.log("state results", this.state.results);
+    });
   }
 
   render() {
@@ -49,8 +63,9 @@ class App extends Component {
                 />
               </Col>
             </Form.Row>
-            <Button type="submit" value="Submit" />
+            <Button type="submit">Submit</Button>
           </Form>
+          <article>{this.state.results}</article>
         </div>
       </div>
     );
