@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 
@@ -14,7 +14,8 @@ class App extends Component {
       job: "",
       location: "",
       radius: 25,
-      age: ""
+      age: "",
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,22 +29,22 @@ class App extends Component {
   handleSubmit(event) {
     console.log(this.state);
     event.preventDefault();
-    // this.setState({numOfJobs: })
+    this.setState({ loading: true });
     Axios.get(
       `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=${this.state.radius}&days_ago=${this.state.age}&jobs_per_page=${this.state.numOfJobs}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(res => {
       let jobs = [];
 
-      res.data.jobs.map((job, index) => {
-        console.log(job.name, index);
+      res.data.jobs.forEach((job, index) => {
+        console.log(job, index);
         jobs.push(
           <p key={index}>
-            {job.name} at {job.location}
+            {job.name} at {job.location} and posted {job.job_age}days ago
           </p>
         );
       });
 
-      this.setState({ results: jobs });
+      this.setState({ results: jobs, loading: false });
       console.log("state", this.state);
     });
   }
@@ -121,7 +122,7 @@ class App extends Component {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Label>Day's since post</Form.Label>
+                <Form.Label>Max day's since post</Form.Label>
                 <Form.Control
                   name="age"
                   placeholder="Day's"
@@ -130,9 +131,25 @@ class App extends Component {
               </Col>
             </Form.Row>
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit">
+              {" "}
+              {!this.state.loading ? (
+                "Submit"
+              ) : (
+                <React.Fragment>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />{" "}
+                  Loading...
+                </React.Fragment>
+              )}
+            </Button>
           </Form>
-          <article>{this.state.results}</article>
+          <section>{this.state.results}</section>
         </div>
       </div>
     );
