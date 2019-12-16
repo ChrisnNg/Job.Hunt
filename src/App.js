@@ -1,10 +1,27 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const name = event.target.name;
+    this.setState({ [name]: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert("A name was submitted: " + this.state);
+    console.log(this.state);
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,15 +30,26 @@ class App extends Component {
           <h2>Jobget's Assignment</h2>
         </div>
         <div>
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Col>
-                <Form.Control placeholder="First name" />
+                <Form.Label>What</Form.Label>
+                <Form.Control
+                  name="job"
+                  placeholder="Job Title, keywords, or company"
+                  onChange={this.handleChange}
+                />
               </Col>
               <Col>
-                <Form.Control placeholder="Last name" />
+                <Form.Label>Where</Form.Label>
+                <Form.Control
+                  name="location"
+                  placeholder="City or Province"
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Row>
+            <Button type="submit" value="Submit" />
           </Form>
         </div>
       </div>
