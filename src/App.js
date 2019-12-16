@@ -39,7 +39,7 @@ class App extends Component {
         console.log(job, index);
         jobs.push(
           <p key={index}>
-            {job.name} at {job.location} and posted {job.job_age}days ago
+            {job.name} at {job.location} and posted {job.job_age} days ago
           </p>
         );
       });
@@ -68,7 +68,7 @@ class App extends Component {
           <h2>Jobget's Assignment</h2>
         </div>
         <div>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="bottom-border">
             <Form.Row>
               <Col>
                 <Form.Label>What</Form.Label>

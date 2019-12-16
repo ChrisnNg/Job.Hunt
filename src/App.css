@@ -22,3 +22,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.bottom-border {
+  position: relative;
+  border-bottom: 1px solid grey;
+  width: 90vw;
+  left: 5vw;
+}
+
+.btn {
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 15px;
+}
