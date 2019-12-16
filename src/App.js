@@ -8,7 +8,14 @@ import Axios from "axios";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { results: [], numOfJobs: 10 };
+    this.state = {
+      results: [],
+      numOfJobs: 10,
+      job: "",
+      location: "",
+      radius: 25,
+      age: ""
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,7 +30,7 @@ class App extends Component {
     event.preventDefault();
     // this.setState({numOfJobs: })
     Axios.get(
-      `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=25&days_ago=&jobs_per_page=${this.state.numOfJobs}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.ziprecruiter.com/jobs/v1?search=${this.state.job}&location=${this.state.location},%20CA&radius_miles=${this.state.radius}&days_ago=${this.state.age}&jobs_per_page=${this.state.numOfJobs}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(res => {
       let jobs = [];
 
@@ -79,22 +86,50 @@ class App extends Component {
                 />
               </Col>
             </Form.Row>
-            <Col>
-              <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Results per page</Form.Label>
+
+            <Form.Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Results per page</Form.Label>
+                  <Form.Control
+                    name="numOfJobs"
+                    as="select"
+                    onChange={this.handleChange}
+                  >
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Radius (miles)</Form.Label>
+                  <Form.Control
+                    name="radius"
+                    as="select"
+                    onChange={this.handleChange}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Label>Day's since post</Form.Label>
                 <Form.Control
-                  name="numOfJobs"
-                  as="select"
+                  name="age"
+                  placeholder="Day's"
                   onChange={this.handleChange}
-                >
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
+                />
+              </Col>
+            </Form.Row>
+
             <Button type="submit">Submit</Button>
           </Form>
           <article>{this.state.results}</article>
