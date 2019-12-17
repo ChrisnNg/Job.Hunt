@@ -38,29 +38,26 @@ class App extends Component {
 
       if (res.data.jobs.length === 0) {
         jobs = <p>No jobs found.</p>;
-        this.setState({ results: jobs, loading: false });
+      } else {
+        res.data.jobs.forEach((job, index) => {
+          jobs.push(
+            <article key={index} data-cy="article">
+              <a href={job.url}>{job.name}</a>
+              <p>
+                at {job.location} - posted {job.posted_time_friendly}
+              </p>
+              <p>
+                <b>
+                  ${job.salary_min} - ${job.salary_max} a year
+                </b>
+              </p>
+              <p>{ReactHtmlParser(job.snippet)}</p>
+            </article>
+          );
+        });
       }
 
-      res.data.jobs.forEach((job, index) => {
-        console.log(job, index);
-        jobs.push(
-          <article key={index} data-cy="article">
-            <a href={job.url}>{job.name}</a>
-            <p>
-              at {job.location} - posted {job.posted_time_friendly}
-            </p>
-            <p>
-              <b>
-                ${job.salary_min} - ${job.salary_max} a year
-              </b>
-            </p>
-            <p>{ReactHtmlParser(job.snippet)}</p>
-          </article>
-        );
-      });
-
       this.setState({ results: jobs, loading: false });
-      console.log("state", this.state);
     });
   }
 
