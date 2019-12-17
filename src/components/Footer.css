@@ -1,0 +1,9 @@
+section.top-border{
+  position: relative;
+  border-top: 2px solid grey;
+  width: 90vw;
+  left: 5vw;
+  padding-bottom: 5px;
+  margin: 10px;
+  color: grey;
+}

@@ -1,9 +1,10 @@
 import React from "react";
+import "./Footer.css";
 
 const Footer = props => {
   return (
     <React.Fragment>
-      <section>
+      <section className="top-border">
         <i className="fas fa-copyright" />
         &nbsp;Christopher Ng 2019
         <a href="https://www.ziprecruiter.com/jobs" id="jobs_widget_link">

@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
+      results: ["Results will be displayed here."],
       numOfJobs: 10,
       job: "",
       location: "",
@@ -47,7 +47,7 @@ class App extends Component {
           <article key={index}>
             <a href={job.url}>{job.name}</a>
             <p>
-              at {job.location} - posted {job.job_age} days ago
+              at {job.location} - posted {job.posted_time_friendly}
             </p>
             <p>
               <b>
