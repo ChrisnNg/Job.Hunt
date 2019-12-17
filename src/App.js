@@ -51,6 +51,12 @@ class App extends Component {
           }
           return comparison;
         }
+        console.log(res.data.jobs.sort(compare));
+
+        const formatter = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD"
+        });
 
         res.data.jobs.sort(compare).forEach((job, index) => {
           jobs.push(
@@ -61,7 +67,8 @@ class App extends Component {
               </p>
               <p>
                 <b>
-                  ${job.salary_min} - ${job.salary_max} a year
+                  {formatter.format(job.salary_min_annual)} -{" "}
+                  {formatter.format(job.salary_max_annual)} a year
                 </b>
               </p>
               <p>{ReactHtmlParser(job.snippet)}</p>
