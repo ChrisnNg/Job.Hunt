@@ -44,7 +44,7 @@ class App extends Component {
       res.data.jobs.forEach((job, index) => {
         console.log(job, index);
         jobs.push(
-          <article key={index}>
+          <article key={index} data-cy="article">
             <a href={job.url}>{job.name}</a>
             <p>
               at {job.location} - posted {job.posted_time_friendly}

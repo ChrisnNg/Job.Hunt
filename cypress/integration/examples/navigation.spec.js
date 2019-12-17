@@ -39,11 +39,23 @@ context("Navigation", () => {
       .should("have.length", 50);
   });
 
-  it("searching Canada yields jobs in Canada", () => {
+  it("searching Canada yields at the first 5 jobs as job in Canada", () => {
     cy.get("[data-cy=location]").type("Canada");
     cy.get("[data-cy=submit]").click();
     cy.get("[data-cy=jobs]")
       .children()
+      .contains("Canada")
+      .parent()
+      .next()
+      .contains("Canada")
+      .parent()
+      .next()
+      .contains("Canada")
+      .parent()
+      .next()
+      .contains("Canada")
+      .parent()
+      .next()
       .contains("Canada");
   });
 
