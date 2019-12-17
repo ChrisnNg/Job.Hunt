@@ -5,6 +5,7 @@ import { Form, Col, Button, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import ReactHtmlParser from "react-html-parser";
+import Footer from "./components/Footer.js";
 
 class App extends Component {
   constructor(props) {
@@ -68,17 +69,6 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <a href="https://www.ziprecruiter.com/jobs" id="jobs_widget_link">
-            <span>Job Search by</span>{" "}
-            <span id="zr_logo_container">
-              <img
-                id="zr_logo"
-                src="https://www.ziprecruiter.com/img/logos/logo-sm-black-304px.png"
-                alt="ZipRecruiter"
-                width="120"
-              />
-            </span>
-          </a>
           <h2>Jobget's Assignment</h2>
         </div>
         <div>
@@ -169,6 +159,7 @@ class App extends Component {
           </Form>
           <section>{this.state.results}</section>
         </div>
+        <Footer />
       </div>
     );
   }
