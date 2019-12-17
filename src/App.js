@@ -35,6 +35,11 @@ class App extends Component {
     ).then(res => {
       let jobs = [];
 
+      if (res.data.jobs.length === 0) {
+        jobs = <p>No jobs found.</p>;
+        this.setState({ results: jobs, loading: false });
+      }
+
       res.data.jobs.forEach((job, index) => {
         console.log(job, index);
         jobs.push(
