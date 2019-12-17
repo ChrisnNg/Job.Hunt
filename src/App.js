@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state);
     event.preventDefault();
     this.setState({ loading: true });
     Axios.get(
@@ -43,9 +42,9 @@ class App extends Component {
       res.data.jobs.forEach((job, index) => {
         console.log(job, index);
         jobs.push(
-          <p key={index}>
+          <a key={index} href={job.url}>
             {job.name} at {job.location} and posted {job.job_age} days ago
-          </p>
+          </a>
         );
       });
 
@@ -75,16 +74,20 @@ class App extends Component {
         <div>
           <Form onSubmit={this.handleSubmit} className="bottom-border">
             <Form.Row>
+              <Form.Label>
+                <i className="fas fa-search" />
+              </Form.Label>
               <Col>
-                <Form.Label>What</Form.Label>
                 <Form.Control
                   name="job"
                   placeholder="Job Title, keywords, or company"
                   onChange={this.handleChange}
                 />
               </Col>
+              <Form.Label>
+                <i className="fas fa-map-marker-alt" />
+              </Form.Label>
               <Col>
-                <Form.Label>Where</Form.Label>
                 <Form.Control
                   name="location"
                   placeholder="City or Province"

@@ -37,3 +37,17 @@
 section {
   padding: 15px;
 }
+
+a:before {
+  content: '\A';
+  white-space: pre;
+}
+
+i {
+  padding-top: 10px;
+  margin: 3px;
+}
+
+Form {
+  margin: 10px;
+}
