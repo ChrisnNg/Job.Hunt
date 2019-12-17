@@ -42,9 +42,18 @@ class App extends Component {
       res.data.jobs.forEach((job, index) => {
         console.log(job, index);
         jobs.push(
-          <a key={index} href={job.url}>
-            {job.name} at {job.location} and posted {job.job_age} days ago
-          </a>
+          <article key={index}>
+            <a href={job.url}>{job.name}</a>
+            <p>
+              at {job.location} - posted {job.job_age} days ago
+            </p>
+            <p>
+              <b>
+                ${job.salary_min} - ${job.salary_max} a year
+              </b>
+            </p>
+            <p>{job.snippet}</p>
+          </article>
         );
       });
 
