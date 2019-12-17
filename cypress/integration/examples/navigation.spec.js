@@ -28,10 +28,18 @@ context("Navigation", () => {
   });
 
   it("increasing num of requested results yields more", () => {
-    cy.get("[data-cy=results-dropdown]").select("50");
+    cy.get("[data-cy=numOfResults]").select("50");
     cy.get("[data-cy=submit]").click();
     cy.get("[data-cy=jobs]")
       .children()
       .should("have.length", 50);
+  });
+
+  it("searching Canada yields jobs in Canada", () => {
+    cy.get("[data-cy=location]").type("Canada");
+    cy.get("[data-cy=submit]").click();
+    cy.get("[data-cy=jobs]")
+      .children()
+      .contains("Canada");
   });
 });

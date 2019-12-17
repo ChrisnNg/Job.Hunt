@@ -92,6 +92,7 @@ class App extends Component {
                   name="location"
                   placeholder="City or Province"
                   onChange={this.handleChange}
+                  data-cy="location"
                 />
               </Col>
             </Form.Row>
@@ -104,7 +105,7 @@ class App extends Component {
                     name="numOfJobs"
                     as="select"
                     onChange={this.handleChange}
-                    data-cy="results-dropdown"
+                    data-cy="numOfResults"
                   >
                     <option value="10">10</option>
                     <option value="20">20</option>
