@@ -51,19 +51,20 @@ class App extends Component {
           }
           return comparison;
         }
-        console.log(res.data.jobs.sort(sortByAge));
 
         const formatter = new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD"
         });
 
+        console.log(res.data.jobs.sort(sortByAge));
         res.data.jobs.sort(sortByAge).forEach((job, index) => {
           jobs.push(
             <article key={index} data-cy="article">
               <a href={job.url}>{job.name}</a>
               <p>
-                at {job.location} - posted {job.posted_time_friendly}
+                at {job.location} - posted{" "}
+                {job.job_age == 1 ? "yesterday" : job.job_age + " days ago"}
               </p>
               <p>
                 <b>
