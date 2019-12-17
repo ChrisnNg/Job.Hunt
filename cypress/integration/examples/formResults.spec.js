@@ -67,4 +67,12 @@ context("Form Results", () => {
       .next()
       .contains("yesterday");
   });
+
+  it("Links are functional", () => {
+    cy.get("[data-cy=submit]").click();
+    cy.get("[data-cy=jobs]")
+      .children()
+      .children()
+      .should("have.attr", "href");
+  });
 });
