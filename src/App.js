@@ -130,10 +130,10 @@ class App extends Component {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Label>Max day's since post</Form.Label>
+                <Form.Label>Max age</Form.Label>
                 <Form.Control
                   name="age"
-                  placeholder="Day's"
+                  placeholder="# of Days"
                   onChange={this.handleChange}
                   data-cy="age"
                 />
