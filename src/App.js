@@ -39,7 +39,20 @@ class App extends Component {
       if (res.data.jobs.length === 0) {
         jobs = <p>No jobs found.</p>;
       } else {
-        res.data.jobs.forEach((job, index) => {
+        function compare(a, b) {
+          const dateA = a.job_age;
+          const dateB = b.job_age;
+
+          let comparison = 0;
+          if (dateA > dateB) {
+            comparison = 1;
+          } else if (dateA < dateB) {
+            comparison = -1;
+          }
+          return comparison;
+        }
+
+        res.data.jobs.sort(compare).forEach((job, index) => {
           jobs.push(
             <article key={index} data-cy="article">
               <a href={job.url}>{job.name}</a>
