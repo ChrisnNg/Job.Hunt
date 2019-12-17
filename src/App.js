@@ -4,6 +4,7 @@ import "./App.css";
 import { Form, Col, Button, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
+import ReactHtmlParser from "react-html-parser";
 
 class App extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class App extends Component {
                 ${job.salary_min} - ${job.salary_max} a year
               </b>
             </p>
-            <p>{job.snippet}</p>
+            <p>{ReactHtmlParser(job.snippet)}</p>
           </article>
         );
       });
