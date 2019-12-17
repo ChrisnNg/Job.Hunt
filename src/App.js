@@ -139,7 +139,7 @@ class App extends Component {
               </Col>
             </Form.Row>
 
-            <Button type="submit">
+            <Button type="submit" data-cy="submit">
               {" "}
               {!this.state.loading ? (
                 "Submit"
@@ -157,7 +157,7 @@ class App extends Component {
               )}
             </Button>
           </Form>
-          <section>{this.state.results}</section>
+          <section data-cy="jobs">{this.state.results}</section>
         </div>
         <Footer />
       </div>
