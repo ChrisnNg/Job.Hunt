@@ -82,6 +82,7 @@ class App extends Component {
                   name="job"
                   placeholder="Job Title, keywords, or company"
                   onChange={this.handleChange}
+                  data-cy="title"
                 />
               </Col>
               <Form.Label>

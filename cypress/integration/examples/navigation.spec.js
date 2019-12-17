@@ -42,4 +42,12 @@ context("Navigation", () => {
       .children()
       .contains("Canada");
   });
+
+  it("searching React yields at least one developer job", () => {
+    cy.get("[data-cy=title]").type("React");
+    cy.get("[data-cy=submit]").click();
+    cy.get("[data-cy=jobs]")
+      .children()
+      .contains("developer");
+  });
 });
