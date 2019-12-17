@@ -15,7 +15,7 @@ class App extends Component {
       numOfJobs: 10,
       job: "",
       location: "",
-      radius: 25,
+      radius: 2,
       age: "",
       loading: false
     };
@@ -113,6 +113,7 @@ class App extends Component {
                     <option value="30">30</option>
                     <option value="40">40</option>
                     <option value="50">50</option>
+                    <option value="75">75</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -124,11 +125,10 @@ class App extends Component {
                     as="select"
                     onChange={this.handleChange}
                   >
+                    <option value="2">2</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
+                    <option value="20">20</option>
                   </Form.Control>
                 </Form.Group>
               </Col>

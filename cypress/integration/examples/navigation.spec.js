@@ -13,6 +13,10 @@ context("Navigation", () => {
     cy.reload(true);
   });
 
+  it("contains title of site", () => {
+    cy.contains("Job.Hunt");
+  });
+
   it("submiting default values returns 10 results", () => {
     cy.get("[data-cy=submit]").click();
     cy.get("[data-cy=jobs]")
