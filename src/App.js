@@ -138,6 +138,7 @@ class App extends Component {
                   name="age"
                   placeholder="Day's"
                   onChange={this.handleChange}
+                  data-cy="age"
                 />
               </Col>
             </Form.Row>

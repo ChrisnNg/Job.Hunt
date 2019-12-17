@@ -66,4 +66,24 @@ context("Navigation", () => {
       .children()
       .contains("developer");
   });
+
+  it("max days yields posts younger than num of days", () => {
+    cy.get("[data-cy=age]").type("1");
+    cy.get("[data-cy=submit]").click();
+    cy.get("[data-cy=jobs]")
+      .children()
+      .contains("yesterday")
+      .parent()
+      .next()
+      .contains("yesterday")
+      .parent()
+      .next()
+      .contains("yesterday")
+      .parent()
+      .next()
+      .contains("yesterday")
+      .parent()
+      .next()
+      .contains("yesterday");
+  });
 });
