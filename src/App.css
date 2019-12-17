@@ -28,6 +28,7 @@
   border-bottom: 2px solid grey;
   width: 90vw;
   left: 5vw;
+  border-radius: 2px;
 }
 
 .btn {
