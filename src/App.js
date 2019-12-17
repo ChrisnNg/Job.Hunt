@@ -69,7 +69,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Jobget's Assignment</h2>
+          <h2>Job.Hunt</h2>
         </div>
         <div>
           <Form onSubmit={this.handleSubmit} className="bottom-border">

@@ -8,8 +8,10 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-image: url("./assets/banner.jpg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 20px;
   color: white;
 }
@@ -59,4 +61,8 @@ article:hover {
 
 .form-label {
   padding-top: 7px;
+}
+
+h2 {
+  color: black;
 }
