@@ -104,6 +104,7 @@ class App extends Component {
                     name="numOfJobs"
                     as="select"
                     onChange={this.handleChange}
+                    data-cy="results-dropdown"
                   >
                     <option value="10">10</option>
                     <option value="20">20</option>
