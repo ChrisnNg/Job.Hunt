@@ -39,7 +39,7 @@ class App extends Component {
       if (res.data.jobs.length === 0) {
         jobs = <p>No jobs found.</p>;
       } else {
-        function compare(a, b) {
+        function sortByAge(a, b) {
           const dateA = a.job_age;
           const dateB = b.job_age;
 
@@ -51,14 +51,14 @@ class App extends Component {
           }
           return comparison;
         }
-        console.log(res.data.jobs.sort(compare));
+        console.log(res.data.jobs.sort(sortByAge));
 
         const formatter = new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD"
         });
 
-        res.data.jobs.sort(compare).forEach((job, index) => {
+        res.data.jobs.sort(sortByAge).forEach((job, index) => {
           jobs.push(
             <article key={index} data-cy="article">
               <a href={job.url}>{job.name}</a>
