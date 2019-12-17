@@ -75,7 +75,7 @@ class App extends Component {
           <Form onSubmit={this.handleSubmit} className="bottom-border">
             <Form.Row>
               <Form.Label>
-                <i className="fas fa-search" />
+                <i className="fas fa-search form-search" />
               </Form.Label>
               <Col>
                 <Form.Control
@@ -85,7 +85,7 @@ class App extends Component {
                 />
               </Col>
               <Form.Label>
-                <i className="fas fa-map-marker-alt" />
+                <i className="fas fa-map-marker-alt form-search" />
               </Form.Label>
               <Col>
                 <Form.Control

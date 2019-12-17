@@ -43,8 +43,8 @@ a:before {
   white-space: pre;
 }
 
-i {
-  padding-top: 10px;
+.form-search {
+  padding-bottom: 5px;
   margin: 3px;
 }
 
@@ -54,4 +54,8 @@ Form {
 
 article:hover {
   background-color: rgb(247, 238, 238);
+}
+
+.form-label {
+  padding-top: 7px;
 }
