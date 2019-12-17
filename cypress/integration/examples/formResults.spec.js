@@ -1,27 +1,8 @@
 /// <reference types="Cypress" />
 
-context("Navigation", () => {
+context("Form Results", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
-  });
-
-  it("cy.reload() - reload the page", () => {
-    // https://on.cypress.io/reload
-    cy.reload();
-
-    // reload the page without using the cache
-    cy.reload(true);
-  });
-
-  it("contains title of site", () => {
-    cy.contains("Job.Hunt");
-  });
-
-  it("submiting default values returns 10 results", () => {
-    cy.get("[data-cy=submit]").click();
-    cy.get("[data-cy=jobs]")
-      .children()
-      .should("have.length", 10);
   });
 
   it("submiting default values returns 10 results", () => {
@@ -40,7 +21,7 @@ context("Navigation", () => {
   });
 
   it("searching Canada yields at the first 5 jobs as job in Canada", () => {
-    cy.get("[data-cy=location]").type("Canada");
+    cy.get("[data-cy=location]").type("BC, Canada");
     cy.get("[data-cy=submit]").click();
     cy.get("[data-cy=jobs]")
       .children()
